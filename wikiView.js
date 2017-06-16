@@ -1,21 +1,28 @@
 $(document).ready(function(){
-  $('#srchBut').click(function(){
-    $('#srchBut').animate({left: '150px',
+
+    //   startscreen animations
+    $('#srchBut').click(function(){
+    $('#srchBut').animate({top: '25px',
+                           left: '+=150px',
                            width: '75px',
                            height: '75px',
                            letterSpacing: '15px',
                            fontSize: '1.39em',
                            paddingLeft: '15px'
                           }, 'slow');
-    $('#rndmBut').animate({right: '150px',
+    $('#rndmBut').animate({top: '25px',
+                           right: '+=150px',
                            width: '75px',
                            height: '75px',
                            letterSpacing: '15px',
                            fontSize: '1.39em',
                            paddingLeft: '15px'
                           }, 'slow');
-
-
+    $('#rqst').css('display', 'inline')
+        .animate({height: '45px',
+                  fontSize: '1.618em',
+                  maxWidth: 'auto'}, 'slow');
+    $('#srchBut').prop('id', 'getRqst');
   });
 
 

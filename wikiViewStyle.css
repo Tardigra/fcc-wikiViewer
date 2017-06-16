@@ -8,6 +8,9 @@ body {
 /*  font-family: 'PT Sans Narrow', sans-serif; */
 /*  font-weight: 400; */
   font-size: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 #bttns {
@@ -19,6 +22,7 @@ body {
 .dice {
   position: relative;
   display: inline-block;
+  top: 200px;
   color: rgba(255, 255, 255, 0.8);
   background-color: rgba(11, 88, 70, 0.8);
   border-radius: 10px;
@@ -44,7 +48,14 @@ body {
   display: inline-block;
   position: relative;
   width: 0px;
+}
 
+#rqst {
+    position: relative;
+    display: none;
+    color: #333;
+
+    width: auto;
 }
 
 .results {
