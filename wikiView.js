@@ -2,34 +2,37 @@ $(document).ready(function(){
 
     //   startscreen animations
     $('#srchBut').click(function(){
-    $('#srchBut').animate({top: '25px',
-                           left: '+=150px',
-                           width: '75px',
-                           height: '75px',
-                           letterSpacing: '15px',
-                           fontSize: '1.39em',
-                           paddingLeft: '15px'
-                          }, 'slow');
-    $('#rndmBut').animate({top: '25px',
-                           right: '+=150px',
-                           width: '75px',
-                           height: '75px',
-                           letterSpacing: '15px',
-                           fontSize: '1.39em',
-                           paddingLeft: '15px'
-                          }, 'slow');
-    $('#rqst').css('display', 'inline')
-        .animate({height: '45px',
-                  fontSize: '1.618em',
-                  maxWidth: 'auto'}, 'slow');
-    $('#srchBut').prop('id', 'getRqst');
-  });
+        $('#srchBut').remove();
 
+        $('h1').remove();
+            $('#getRqst').css('display', 'inline')
+                         .animate({top: '45px',
+                                   width: '75px',
+                                   height: '75px',
+                                   letterSpacing: '15px',
+                                   fontSize: '1.39em',
+                                   paddingLeft: '15px'
+                                  }, '1500');
+
+            $('#rndmBut').animate({top: '45px',
+                           width: '75px',
+                           height: '75px',
+                           letterSpacing: '15px',
+                           fontSize: '1.39em',
+                           paddingLeft: '15px'
+                          }, '1500');
+
+            $('#rqst').css('display', 'inline')
+                      .animate({top: '24px',
+                                height: '75px',
+                                fontSize: '2.518em',
+                                width: '300px'}, '1500');
+    });
 
   $('#getRqst').click(function(){
     var q = $('#rqst').val();
-    $.ajax({
 
+    $.ajax({
       // The URL for the request
       url: "https://en.wikipedia.org/w/api.php?gsrsearch=" + q + "&exintro&explaintext",
 
@@ -45,7 +48,6 @@ $(document).ready(function(){
              exlimit: "max",
              origin: "*"
             },
-      xhrFields: { withCredentials: true },
       headers: { 'Api-User-Agent': 'Example/1.0' },
 
       // Whether this is a POST or GET request
@@ -60,16 +62,17 @@ $(document).ready(function(){
     // The response is passed to the function
     .done(function( json ) {
       var result = "";
+
       $('h3').html('The top ten wiki-results for <strong id="search">"' + q + '"</strong>:');
+
       $.each(json.query.pages, function(i) {
-        result += '<p><a href=" https://en.wikipedia.org?curid=' + json.query.pages[i].pageid + '" target="_blank">' +
+                   result += '<div id="rslt"><a href=" https://en.wikipedia.org?curid=' + json.query.pages[i].pageid + '" target="_blank">' +
                              '<div class="title">' + json.query.pages[i].title + '</div>' +
                              '<div class="extract">' + json.query.pages[i].extract + '</div>' +
-                             '</a></p>';
+                             '</a></div>';
       });
-        $('.results').html(result);
-       //$( "<div class=\"results\">").html( json.query ).appendTo( "body" );
 
+      $('.results').html(result);
     })
     // Code to run if the request fails; the raw request and
     // status codes are passed to the function
@@ -83,9 +86,5 @@ $(document).ready(function(){
     //  .always(function( xhr, status ) {
     //    alert( "The request is complete!" );
     //  });
-
-
-
   });
-
 });
