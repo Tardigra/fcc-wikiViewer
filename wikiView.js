@@ -1,36 +1,36 @@
 $(document).ready(function(){
 
-    //   startscreen animations
-    $('#srchBut').click(function(){
-        $('#srchBut').remove();
+        //   startscreen animations
+        $('#srchBut').click(function(){
 
-        $('h1').remove();
+            $('#srchBut').remove();
+
+            $('h1').remove();
+            $('#topSpacer').animate({paddingBottom: '25px'},'1500');
             $('#getRqst').css('display', 'inline')
-                         .animate({top: '45px',
-                                   width: '75px',
-                                   height: '75px',
-                                   letterSpacing: '15px',
-                                   fontSize: '1.39em',
-                                   paddingLeft: '15px'
-                                  }, '1500');
+                .animate({width: '75px',
+                    height: '75px',
+                    letterSpacing: '15px',
+                    fontSize: '1.39em',
+                    paddingLeft: '15px'
+                }, '1500');
 
-            $('#rndmBut').animate({top: '45px',
-                           width: '75px',
-                           height: '75px',
-                           letterSpacing: '15px',
-                           fontSize: '1.39em',
-                           paddingLeft: '15px'
-                          }, '1500');
+            $('#rndmBut').animate({width: '75px',
+                height: '75px',
+                letterSpacing: '15px',
+                fontSize: '1.39em',
+                paddingLeft: '15px'
+            }, '1500');
 
             $('#rqst').css('display', 'inline')
-                      .animate({top: '24px',
-                                height: '75px',
-                                fontSize: '2.518em',
-                                width: '300px'}, '1500');
-    });
+                .animate({top: '-22px',
+                    height: '75px',
+                    fontSize: '2.518em',
+                    width: '300px'}, '1500');
+        });
 
   $('#getRqst').click(function(){
-    var q = $('#rqst').val();
+     var q = $('#rqst').val();
 
     $.ajax({
       // The URL for the request
@@ -65,8 +65,11 @@ $(document).ready(function(){
 
       $('h3').html('The top ten wiki-results for <strong id="search">"' + q + '"</strong>:');
 
-      $.each(json.query.pages, function(i) {
-                   result += '<div id="rslt"><a href=" https://en.wikipedia.org?curid=' + json.query.pages[i].pageid + '" target="_blank">' +
+        /** @namespace json.query.pages */
+        /** @namespace json.query */
+        $.each(json.query.pages, function(i) {
+            /** @namespace json.query.pages[i].pageid */
+            result += '<div id="rslt"><a href=" https://en.wikipedia.org?curid=' + json.query.pages[i].pageid + '" target="_blank">' +
                              '<div class="title">' + json.query.pages[i].title + '</div>' +
                              '<div class="extract">' + json.query.pages[i].extract + '</div>' +
                              '</a></div>';
